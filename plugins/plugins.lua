@@ -16,9 +16,27 @@ return {
   {
     "akinsho/toggleterm.nvim",
     version = "*",
-    config = true,
-    keys = {
-      { "<leader>td", "<cmd>ToggleTerm size=40 dir=git_dir direction=horizontal<cr>", desc = "Open a horizontal terminal at the Git directory" }
+    opts = {
+      size = 20,
+      open_mapping = [[<c-\>]],
+      hide_numbers = false,
+      shade_filetypes = {},
+      shade_terminals = true,
+      shading_factor = 2,
+      start_in_insert = true,
+      insert_mappings = true,
+      persist_size = true,
+      direction = "float",
+      close_on_exit = true,
+      shell = vim.o.shell,
+      float_opts = {
+        border = "curved",
+        winblend = 0,
+        highlights = {
+          border = "Normal",
+          background = "Normal",
+        },
+      },
     }
   },
 
@@ -117,6 +135,21 @@ return {
 
   { import = "lazyvim.plugins.extras.lang.java" },
 
+  -- { "github/copilot.vim" },
+  -- GitHub COPILOT
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "github/copilot.vim" },                       -- or zbirenbaum/copilot.lua
+      { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+    },
+    build = "make tiktoken",                          -- Only on MacOS or Linux
+    opts = {
+      -- See Configuration section for options
+    },
+    -- See Commands section for default commands if you want to lazy load on them
+  },
+
   -- add more treesitter parsers
   {
     "nvim-treesitter/nvim-treesitter",
@@ -153,8 +186,6 @@ return {
     "nvimdev/dashboard-nvim",
     enabled = false,
   },
-
-  { "echasnovski/mini.hipatterns",              event = "BufReadPre", opts = {} },
 
   -- add jsonls and schemastore packages, and setup treesitter for json, json5 and jsonc
   { import = "lazyvim.plugins.extras.lang.json" },

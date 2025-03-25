@@ -31,6 +31,8 @@ map("n", "<C-S-l>", "<C-w>>")
 map("n", "<C-S-k>", "<C-w>+")
 map("n", "<C-S-j>", "<C-w>-")
 
+map("n", "<C-x>", ":CopilotChat<CR>")
+
 -- Diagnostics
 -- map("n", "<C-j>", function()
 --   vim.diagnostic.goto_next()
